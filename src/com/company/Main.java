@@ -7,7 +7,7 @@ public class Main
     public static void main(String[] args)
     {
         Method_1(args);
-        Method_2(args);
+        Method_2(args); //much more efficient
     }
 
     static void Method_1(String[] args)
@@ -75,27 +75,11 @@ public class Main
             if (output.toString().contains(two))
             {
                 int position = output.indexOf(two);
-                output.delete(position, position + 2);
-                output.insert(position, " ");
+                output.delete(position, position + two.length());
+                if(position > 0 && output.charAt(position-1) != ' ') output.insert(position, " ");//making sure no extra whitespace
             }
             else
                 contains = false;
-        }
-
-        //emptying out the extra white spaces
-        for (int a = 0; a < output.length(); a++)
-        {
-            int n = 1;
-            while (n > 0)
-            {
-                if (output.charAt(a) == ' ' && output.charAt(a + n) == ' ')
-                {
-                    output.delete(a, a + n);
-                }
-                else
-                    break;
-                n++;
-            }
         }
 
         //printing out final output
